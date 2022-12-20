@@ -14,30 +14,30 @@ function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
+// function createBoxes(amount) {
+//   const boxes = [];
+//   for (let i = 0; i < amount; i += 1) {
+//     const box = document.createElement("div");
+//     box.style.width = `${30 + i * 10}px`;
+//     box.style.height = `${30 + i * 10}px`;
+//     box.style.backgroundColor = getRandomHexColor();
+
+//     boxes.push(box);
+//   }
+  
+//   boxesEl.append(...boxes); 
+// }
+
+//Виправила спосіб, в який задавала inline стилі, і почало працювати)
 function createBoxes(amount) {
   const boxes = [];
   for (let i = 0; i < amount; i += 1) {
-    const box = document.createElement("div");
-    box.style.width = `${30 + i * 10}px`;
-    box.style.height = `${30 + i * 10}px`;
-    box.style.backgroundColor = getRandomHexColor();
-
-    boxes.push(box);
+    const currentColor = getRandomHexColor();
+    boxes.push(`<div style = "width:${30 + i * 10}px; height:${30 + i * 10}px; background-color:${currentColor}"></div>`);
   }
   
-  boxesEl.append(...boxes); 
+  boxesEl.insertAdjacentHTML("beforeend", boxes.join("")); 
 }
-
-//TODO: Підкажіть, будь ласка, чому не спрацьовує ця функція? Це була перша спроба, але ніяк не змогла в такий спосіб зробити.
-// function createBoxes(amount) {
-//   const boxes = [];
-//   for (let i = 0; i <= amount; i += 1) {
-//     const currentColor = getRandomHexColor();
-//     boxes.push(`<div width = "${30 + i * 10}px" height = "${30 + i * 10}px" background-color = "${currentColor}"></div>`);
-//   }
-  
-//   boxesEl.insertAdjacentHTML("beforeend", boxes.join("")); 
-// }
 
 
 function destroyBoxes() {
